@@ -77,7 +77,7 @@ public abstract class Delegate implements View.OnClickListener {
         if (getStatus() != SweetSheet.Status.DISMISS) {
             return;
         }
-        mBg.setClickable(mIsBgClickEnable);
+        mBg.setClickable(false);
         showShowdown();
 
     }
@@ -102,6 +102,27 @@ public abstract class Delegate implements View.OnClickListener {
         ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mBg, "alpha", 0, 1);
         objectAnimator.setDuration(400);
         objectAnimator.start();
+        objectAnimator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animator) {
+                
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                mBg.setClickable(mIsBgClickEnable);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animator) {
+
+            }
+        });
     }
 
     /**
